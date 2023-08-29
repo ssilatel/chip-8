@@ -1,5 +1,5 @@
 CC = gcc
-C_FLAGS = -Wall -Werror -pedantic
+C_FLAGS = -Wall -pedantic
 L_FLAGS = -lSDL2
 OBJS = src/chip8.c
 HEADERS = src/chip8.h

@@ -3,17 +3,17 @@
 
 #include <stdint.h>
 
-uint8_t memory[4096];
-uint8_t display[64 * 32];
-uint8_t V[16];  // Registers
-uint8_t I;
-uint8_t PC;
-uint8_t delayTimer;
-uint8_t soundTimer;
-uint8_t stack[16];
-uint8_t sp;
-uint8_t keyboard[16];
-uint8_t fonts[80] =
+uint8_t  memory[4096];
+uint8_t  display[64 * 32];
+uint8_t  V[16];  // Registers
+uint16_t I;
+uint16_t PC;
+uint8_t  delayTimer;
+uint8_t  soundTimer;
+uint16_t stack[16];
+uint16_t sp;
+uint8_t  keyboard[16];
+uint8_t  fonts[80] =
 {
     0xF0, 0x90, 0x90, 0x90, 0xF0, // 0
     0x20, 0x60, 0x20, 0x20, 0x70, // 1
@@ -31,6 +31,6 @@ uint8_t fonts[80] =
     0xE0, 0x90, 0x90, 0x90, 0xE0, // D
     0xF0, 0x80, 0xF0, 0x80, 0xF0, // E
     0xF0, 0x80, 0xF0, 0x80, 0x80  // F
-}
+};
 
 #endif

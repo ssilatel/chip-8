@@ -9,6 +9,7 @@ SDL_Renderer* renderer;
 
 void initChip8();
 int  loadROM(const char* filepath);
+void execute();
 
 int main(int argc, char** argv)
 {
@@ -47,4 +48,24 @@ int loadROM(const char* filepath)
 
     fread(memory + 0x200, sizeof(uint16_t), size, infile);
     return 0;
+}
+
+void execute()
+{
+    uint8_t  X, Y, nn, n;
+    uint16_t nnn;
+
+    // Fetch
+    opcode = memory[PC] << 8 | memory[PC + 1];
+    PC += 2;
+
+    // Decoding
+    X = (opcode & 0x0F00) >> 8;
+    Y = (opcode & 0x00F0) >> 4;
+    n = (opcode & 0x000F) >> 2;
+    nn = (opcode & 0x00FF);
+    nnn = (opcode & 0x0FFF);
+    printf("Opcode: %x\n", opcode);
+    printf("Program Counter: %x\n", PC);
+    printf("I: %x\n", I);
 }

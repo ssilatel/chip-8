@@ -33,4 +33,6 @@ uint8_t  fonts[80] =
     0xF0, 0x80, 0xF0, 0x80, 0x80  // F
 };
 
+uint16_t opcode;
+
 #endif

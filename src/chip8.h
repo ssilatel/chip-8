@@ -34,5 +34,6 @@ uint8_t  fonts[80] =
 };
 
 uint16_t opcode;
+uint8_t  drawFlag;
 
 #endif

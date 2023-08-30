@@ -148,7 +148,7 @@ void execute()
     // Decoding
     X = (opcode & 0x0F00) >> 8;
     Y = (opcode & 0x00F0) >> 4;
-    n = (opcode & 0x000F) >> 2;
+    n = (opcode & 0x000F);
     kk = (opcode & 0x00FF);
     nnn = (opcode & 0x0FFF);
     printf("Opcode: %x\n", opcode);
@@ -204,13 +204,13 @@ void execute()
                 pixel = memory[I + i];
                 for (int j = 0; j < 8; j++)
                 {
-                    if (pixel & (0x80 >> j))
+                    if ((pixel & (0x80 >> j)) != 0)
                     {
-                        if (display[x + i + (y + j) * 64])
+                        if (display[x + j + (y + i) * 64] == 1)
                         {
                             V[0xF] = 1;
                         }
-                        display[x + i + (y + j) * 64] ^= 1;
+                        display[x + j + (y + i) * 64] ^= 1;
                     }
                 }
             }

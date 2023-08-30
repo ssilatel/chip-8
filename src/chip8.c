@@ -27,7 +27,7 @@ int main(int argc, char** argv)
         fprintf(stderr, "Failed to create SDL window: %s\n", SDL_GetError());
         return 1;
     }
-    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     if (!renderer)
     {
         fprintf(stderr, "Failed to create SDL renderer: %s\n", SDL_GetError());
@@ -194,23 +194,23 @@ void execute()
         case 0xC000:
             break;
         case 0xD000:
-            uint8_t x = V[X];
-            uint8_t y = V[Y];
+            uint8_t x = V[X] % 64;
+            uint8_t y = V[Y] % 32;
             uint8_t pixel;
 
             V[0xF] = 0;
-            for (int row = 0; row < n; row++)
+            for (int i = 0; i < n; i++)
             {
-                pixel = memory[I + row];
-                for (int col = 0; col < 8; col++)
+                pixel = memory[I + i];
+                for (int j = 0; j < 8; j++)
                 {
-                    if ((pixel & (0x80 >> col)) != 0)
+                    if (pixel & (0x80 >> j))
                     {
-                        if (display[x + col + ((y + row) * 64)] == 1)
+                        if (display[x + i + (y + j) * 64])
                         {
                             V[0xF] = 1;
                         }
-                        display[x + col + ((y + row) * 64)] ^= 1;
+                        display[x + i + (y + j) * 64] ^= 1;
                     }
                 }
             }

@@ -86,7 +86,7 @@ int main(int argc, char** argv)
                         case SDLK_r:
                             keyboard[0xD] = 1;
                             break;
-                        case SDKL_a:
+                        case SDLK_a:
                             keyboard[0x7] = 1;
                             break;
                         case SDLK_s:
@@ -111,8 +111,8 @@ int main(int argc, char** argv)
                             keyboard[0xF] = 1;
                             break;
                     }
-                    break;
-                case SDL_KEYDOWN:
+                break;
+                case SDL_KEYUP:
                     switch (event.key.keysym.sym)
                     {
                         case SDLK_1:
@@ -139,7 +139,7 @@ int main(int argc, char** argv)
                         case SDLK_r:
                             keyboard[0xD] = 0;
                             break;
-                        case SDKL_a:
+                        case SDLK_a:
                             keyboard[0x7] = 0;
                             break;
                         case SDLK_s:
@@ -164,9 +164,15 @@ int main(int argc, char** argv)
                             keyboard[0xF] = 0;
                             break;
                     }
-                    break;
+                break;
             }
         }
+
+        if (delayTimer > 0)
+        {
+            delayTimer--;
+        }
+
         execute();
         draw();
     }

@@ -45,6 +45,8 @@ int main(int argc, char** argv)
         return 1;
     }
 
+    int32_t speed = 5;
+
     uint8_t running = 1;
     SDL_Event event;
     while (running)
@@ -166,6 +168,15 @@ int main(int argc, char** argv)
                     }
                 break;
             }
+        }
+
+        if (speed < 0)
+        {
+            speed = 0;
+        }
+        else
+        {
+            SDL_Delay(speed);
         }
 
         if (delayTimer > 0)
